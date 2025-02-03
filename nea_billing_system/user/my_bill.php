@@ -19,38 +19,26 @@ $query = "SELECT bills.id AS bill_id, bills.issue_date, bills.due_date, bills.un
 $result = $conn->query($query);
 if ($result) {
     while ($row = $result->fetch_assoc()) {
-        // Compare the current date with the due date
+        // Calculate fine/discount
         $currentDate = date('Y-m-d');
         $dueDate = $row['due_date'];
+        $fine = $discount = 0;
 
-        // Initialize fine and discount
-        $fine = 0;
-        $discount = 0;
-
-        // Add fine or discount based on payment date
         if ($currentDate > $dueDate) {
-            // Payment is late, apply fine
             $fine = $row['total_amount'] * 0.02; // 2% fine
-        } else {
-            // Payment is on time or early, apply discount
+        } else if($currentDate < $dueDate) {
             $discount = $row['total_amount'] * 0.02; // 2% discount
         }
 
-        // Update the total amount with fine or discount
         $totalAmount = $row['total_amount'] + $fine - $discount;
-
-        // Add fine and discount to the row
         $row['fine'] = $fine;
         $row['discount'] = $discount;
         $row['total_amount'] = $totalAmount;
 
-        // Add the bill to the bills array
         $bills[] = $row;
     }
 }
 ?>
-
-
 
 <div class="my-bill-container">
     <h2>My Bills</h2>
@@ -79,13 +67,13 @@ if ($result) {
                             <td><?php echo $bill['issue_date']; ?></td>
                             <td><?php echo $bill['due_date']; ?></td>
                             <td><?php echo $bill['units_consumed']; ?></td>
-                            <td><?php echo number_format($bill['fine'], 2); ?></td> <!-- Fine column -->
-                            <td><?php echo number_format($bill['discount'], 2); ?></td> <!-- Discount column -->
+                            <td><?php echo number_format($bill['fine'], 2); ?></td>
+                            <td><?php echo number_format($bill['discount'], 2); ?></td>
                             <td><?php echo number_format($bill['total_amount'], 2); ?></td>
                             <td><?php echo $bill['status']; ?></td>
                             <td>
                                 <?php if ($bill['status'] === 'Pending') { ?>
-                                    <form method="POST" action="payment.php" >
+                                    <form method="POST" action="payment.php">
                                         <input type="hidden" name="bill_id" value="<?php echo $bill['bill_id']; ?>">
                                         <input type="hidden" name="total_amount" value="<?php echo $bill['total_amount']; ?>">
                                         <button type="submit">Pay Now</button>
@@ -103,5 +91,3 @@ if ($result) {
         <p>No bills found.</p>
     <?php } ?>
 </div>
-
-

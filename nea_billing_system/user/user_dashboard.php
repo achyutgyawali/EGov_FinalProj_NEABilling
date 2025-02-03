@@ -1,9 +1,18 @@
 <?php
 session_start();
+require '../db/connection.php';
+
+// Check if user is logged in and is a customer
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'customer') {
     header("Location: ../login.php");
     exit;
 }
+
+// Get user information from the database using the session username
+$username = $_SESSION['username'];
+$query = "SELECT * FROM customers WHERE username = '$username'";
+$result = $conn->query($query);
+$user = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +27,9 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'customer') {
 <body>
     <div class="dashboard-container">
         <div class="dashboard-header">
-            <!-- <h1>Nepal Electricity Authority</h1> -->
             <img src="../assets/logo.png" alt="Logo" class="logo">
             <div>
-                <p>Welcome, <?php echo $_SESSION['username']; ?></p>
+                <p>Welcome, <?php echo $user['full_name']; ?></p>
                 <!-- <a href="../logout.php"><button>Logout</button></a> -->
             </div>
         </div>
@@ -37,7 +45,30 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'customer') {
             </div>
             <!-- Main Section -->
             <div class="main-section">
-                <h2>Welcome to Nepal Electricity Authority Online Billing System User Dashboard</h2>
+                <h2>Welcome to Nepal Electricity Authority Online Billing System</h2>
+                <div class="user-info">
+                    <p><strong>Full Name:</strong> <?php echo $user['full_name']; ?></p>
+                    <p><strong>Contact:</strong> <?php echo $user['contact']; ?></p>
+                    <p><strong>Address:</strong> <?php echo $user['address']; ?></p>
+                    <p><strong>Branch:</strong> 
+                        <?php
+                        $branch_id = $user['branch_id'];
+                        $branchQuery = "SELECT name FROM branches WHERE id = $branch_id";
+                        $branchResult = $conn->query($branchQuery);
+                        $branch = $branchResult->fetch_assoc();
+                        echo $branch['name'];
+                        ?>
+                    </p>
+                    <p><strong>Demand Type:</strong> 
+                        <?php
+                        $demand_type_id = $user['demand_type_id'];
+                        $demandQuery = "SELECT type FROM demand_types WHERE id = $demand_type_id";
+                        $demandResult = $conn->query($demandQuery);
+                        $demandType = $demandResult->fetch_assoc();
+                        echo $demandType['type'];
+                        ?>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

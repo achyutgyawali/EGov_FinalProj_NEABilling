@@ -5,6 +5,8 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
     header("Location: ../login.php");
     exit;
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +33,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
             <div class="sidebar">
                 <ul>
                     <!-- <li><button data-section="admin/search_customer">Search Customer</button></li> -->
+                    <li><button data-section="admin/report">Generate Report</button></li>
                     <li><button data-section="admin/generate_bill">Generate Bill</button></li>
                     <li><button data-section="admin/add_branch">Add Branch</button></li>
                     <li><button data-section="admin/add_payment_option">Add Payment Option</button></li>
