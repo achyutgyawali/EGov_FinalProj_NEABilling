@@ -72,14 +72,14 @@ if ($result) {
                             <td><?php echo number_format($bill['total_amount'], 2); ?></td>
                             <td><?php echo $bill['status']; ?></td>
                             <td>
-                                <?php if ($bill['status'] === 'Pending') { ?>
-                                    <form method="POST" action="payment.php">
-                                        <input type="hidden" name="bill_id" value="<?php echo $bill['bill_id']; ?>">
-                                        <input type="hidden" name="total_amount" value="<?php echo $bill['total_amount']; ?>">
-                                        <button type="submit">Pay Now</button>
+                            <?php if ($bill['status'] === 'Pending') { ?>
+                                    <form method="POST" action="khalti_payment.php">
+                                        <input type="hidden" name="bill_id" value="<?php echo htmlspecialchars($bill['bill_id']); ?>">
+                                        <input type="hidden" name="total_amount" value="<?php echo htmlspecialchars($bill['total_amount']); ?>">
+                                        <button type="submit" class="pay-now-button">Pay Now</button>
                                     </form>
                                 <?php } else { ?>
-                                    Paid
+                                    <span class="paid-status">Paid</span>
                                 <?php } ?>
                             </td>
                         </tr>
