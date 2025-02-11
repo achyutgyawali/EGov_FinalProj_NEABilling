@@ -38,7 +38,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            VALUES ({$customer['id']}, '$issue_date', '$due_date', $current_reading, $units_consumed, 'Pending')";
 
             if ($conn->query($insertBill) === TRUE) {
-                $message = "Bill generated successfully for SCNO: $scno. Total Amount: $total_amount";
+                // Get the ID of the inserted bill
+                $bill_id = $conn->insert_id;
+
+                // Update the bill with the calculated total_bill_amount
+                $updateBillQuery = "UPDATE bills 
+                                    SET total_bill_amount = $total_amount 
+                                    WHERE id = $bill_id";
+
+                if ($conn->query($updateBillQuery) === TRUE) {
+                    $message = "Bill generated successfully for SCNO: $scno. Total Amount: $total_amount";
+                } else {
+                    $status = 'error';
+                    $message = "Error updating bill with total amount: " . $conn->error;
+                }
             } else {
                 $status = 'error';
                 $message = "Error generating bill: " . $conn->error;
@@ -56,25 +69,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="generate-bill-container">
     <h2>Generate Bill</h2>
-    <form action="generate_bill.php" method="POST">
-                <label for="scno">SCNO:</label>
-                <input type="text" id="scno" name="scno" required>
-                <br>
-            
-                <label for="issue_date">Issue Date:</label>
-                <input type="date" id="issue_date" name="issue_date" required>
-                <br>
-           
-                <label for="due_date">Due Date:</label>
-                <input type="date" id="due_date" name="due_date" required>
-                <br>
-            
-                <label for="current_reading">Current Reading:</label>
-                <input type="number" id="current_reading" name="current_reading" required>
-                <br>
-                
-                <button type="submit">Generate Bill</button>
-            
+    <form action="generate_bill.php" method="POST" class="generate-bill-form">
+        <div class="form-group">
+            <label for="scno">SCNO:</label>
+            <input type="text" id="scno" name="scno" required>
+        </div>
+        <div class="form-group">
+            <label for="issue_date">Issue Date:</label>
+            <input type="date" id="issue_date" name="issue_date" required>
+        </div>
+        <div class="form-group">
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+        </div>
+        <div class="form-group">
+            <label for="current_reading">Current Reading:</label>
+            <input type="number" id="current_reading" name="current_reading" required>
+        </div>
+        <button type="submit" class="generate-bill-button">Generate Bill</button>
     </form>
-    <div id="responseMessage"></div>
+    <div id="responseMessage" class="response-message"></div>
 </div>

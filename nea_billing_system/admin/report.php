@@ -15,8 +15,11 @@ $customersByDemandType = $conn->query("SELECT dt.type AS demand_type, COUNT(c.id
 $customersByBranch = $conn->query("SELECT b.name AS branch_name, COUNT(c.id) AS customer_count FROM customers c JOIN branches b ON c.branch_id = b.id GROUP BY b.name");
 $paidBills = $conn->query("SELECT COUNT(id) AS paid_count FROM bills WHERE status = 'Paid'");
 $pendingBills = $conn->query("SELECT COUNT(id) AS pending_count FROM bills WHERE status = 'Pending'");
-$totalRevenue = $conn->query("SELECT SUM(ph.amount_paid) AS total_revenue FROM payment_history ph JOIN bills b ON ph.bill_id = b.id");
-$totalRevenueAmount = $totalRevenue->fetch_assoc()['total_revenue'];
+
+// Fetch total revenue by summing total_bill_amount for all 'Paid' bills
+$totalRevenueQuery = $conn->query("SELECT SUM(total_bill_amount) AS total_revenue FROM bills WHERE status = 'Paid'");
+$totalRevenueData = $totalRevenueQuery->fetch_assoc();
+$totalRevenueAmount = $totalRevenueData['total_revenue'] ?: 0; // If no paid bills, set revenue to 0
 ?>
 <div>
 <h2>System Report</h2>
@@ -94,8 +97,8 @@ $totalRevenueAmount = $totalRevenue->fetch_assoc()['total_revenue'];
         </thead>
         <tbody>
             <tr>
-                <td><?php echo "NPR" . number_format($totalRevenueAmount, 2); ?></td>
-            </tr>
+            <td><?php echo 'NPR ' . number_format($totalRevenueAmount, 2); ?></td>            
+        </tr>
         </tbody>
     </table>
 </div>
