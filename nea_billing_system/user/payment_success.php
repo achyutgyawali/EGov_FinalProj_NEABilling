@@ -1,4 +1,4 @@
-<link rel = "stylesheet" href="../css/paymentdecision.css">
+<link rel = "stylesheet" href="../css/another.css">
 
 <?php
 echo "<div id='content-wrapper'>"; // Outer wrapper

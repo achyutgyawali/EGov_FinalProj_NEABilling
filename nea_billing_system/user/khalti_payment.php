@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $billId = $_POST['bill_id'];
     $totalAmount = $_POST['total_amount'] * 100; // Convert to paisa
 
-    $secretKey = "Key ddbee9aa377941e9ae768eee74d58a3b"; // Ensure "Key " prefix
+    $secretKey = "Key f694cc42710a4389867c5040191a4f5a"; // Ensure "Key " prefix
 
     $payload = json_encode([
         "return_url" => "http://localhost/egov_finalproject/nea_billing_system/user/payment_success.php",
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             console.log("Khalti Payment Page Loaded");
 
             var config = {
-                publicKey: "1ad3f4f426134c0fad08b6d25ffda459", // Your Khalti public key
+                publicKey: "c0da594d0ee24312939137d43f0a909a", // Your Khalti public key
                 productIdentity: "<?php echo $billId; ?>",
                 productName: "Electricity Bill Payment",
                 productUrl: "http://localhost/egov_finalproject/nea_billing_system/user/khalti_payment.php", 
