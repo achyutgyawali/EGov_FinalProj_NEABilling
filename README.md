@@ -14,7 +14,6 @@ A web-based **Electricity Billing Management System** built for the **Nepal Elec
 - [Prerequisites](#prerequisites)
 - [How to Run](#how-to-run)
 - [Default Credentials](#default-credentials)
-- [Screenshots](#screenshots)
 
 ---
 
@@ -238,7 +237,3 @@ You will be redirected to the **Login page**.
 *6th Semester — College Project*
 
 ---
-
-## 📄 License
-
-This project is for **educational purposes only** and is not intended for production deployment without further security hardening.
