@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $payload = json_encode([
         "return_url" => "http://localhost/egov_finalproject/nea_billing_system/user/payment_success.php",
-        "website_url" => "http://localhost/egpv_finalproject/nea_billing_system/",
+        "website_url" => "http://localhost/egov_finalproject/nea_billing_system/",
         "amount" => $totalAmount,
         "purchase_order_id" => $billId,
         "purchase_order_name" => "Electricity Bill Payment",
         "customer_info" => [
             "name" => "Test User",
             "email" => "test@example.com",
-            "phone" => "9800000000"
+            "phone" => "9800000005"
         ]
     ]);
 

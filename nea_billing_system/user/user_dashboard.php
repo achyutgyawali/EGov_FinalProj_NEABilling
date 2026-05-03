@@ -47,6 +47,7 @@ $user = $result->fetch_assoc();
             <div class="main-section">
                 <h2>Welcome to Nepal Electricity Authority Online Billing System</h2>
                 <div class="user-info">
+                    <p><strong>SCNO:</strong> <?php echo $user['id']; ?></p>
                     <p><strong>Full Name:</strong> <?php echo $user['full_name']; ?></p>
                     <p><strong>Contact:</strong> <?php echo $user['contact']; ?></p>
                     <p><strong>Address:</strong> <?php echo $user['address']; ?></p>
