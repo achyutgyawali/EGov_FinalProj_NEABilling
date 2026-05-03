@@ -1,0 +1,224 @@
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f9ff; /* Soft blue background */
+}
+
+h1, h2 {
+    margin: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #1e90ff; /* Soft blue for links */
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #4682b4; /* Slightly darker blue for hover */
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #1e90ff; /* Soft blue button background */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4682b4; /* Darker blue on hover */
+}
+
+/* Login and Registration Styling */
+.login-container, .register-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a lighter effect */
+}
+
+.login-container form, .register-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container h2, .register-container h2 {
+    margin-bottom: 20px;
+    color: #1e90ff; /* Soft blue for headings */
+}
+
+input, select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus, select:focus {
+    border-color: #1e90ff; /* Soft blue focus border */
+    outline: none;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #ffffff; /* White background for a clean look */
+}
+
+.header img {
+    height: 50px;
+    margin-right: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #1e90ff; /* Soft blue for header text */
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-header {
+    background: #fff; /* Soft blue header */
+    color: black;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+}
+
+.dashboard-body {
+    display: flex;
+    margin-top: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 30%;
+    background: #ffffff; /* White background for sidebar */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li button {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    background-color: #f1f9ff; /* Light blue background */
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li button:hover {
+    background-color: #e0f7fa; /* Slightly darker blue on hover */
+}
+
+/* Main Section */
+.main-section {
+    width: 65%;
+    margin-left: 5%;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.main-section h2 {
+    margin-bottom: 20px;
+    color: #1e90ff; /* Soft blue for main section heading */
+}
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background: #f1f9ff; /* Light blue header for table */
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+/* General Styles for Centering */
+.payment-container,
+.payment-success-container,
+.payment-error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.payment-container {
+    background-color: #f4f4f4; /* Light background for the payment form */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.payment-success-container,
+.payment-error-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+}
+

@@ -1,0 +1,79 @@
+/* General body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+}
+
+/* Style the wrapper to center content */
+#content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* General Payment Status Container */
+.payment-status-container {
+    background-color: #fff;
+    padding: 30px;
+    /* Increased padding for larger div size */
+    border-radius: 12px;
+    /* Increased for visual balance with larger size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    /*Adjusted shadow for larger size */
+    text-align: center;
+    width: 80%;
+    /* Added a width */
+    max-width: 600px;
+    /* Maximum width */
+}
+
+/* Heading Style */
+.payment-status-heading {
+    color: #333;
+    margin-bottom: 25px;
+    /* Increased margin for spacing */
+    font-size: 30px;
+    /* Enlarge the text [1][5] */
+}
+
+/* Dashboard Button */
+.payment-status-dashboard-button {
+    display: inline-block;
+    padding: 12px 25px;
+    /* Increased padding for larger button */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    /* Increased for visual balance */
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+    /* Enlarge the text [1] */
+}
+
+.payment-status-dashboard-button:hover {
+    background-color: #0056b3;
+}
+
+/* Specific styles for success/failure */
+.payment-status-heading {
+    font-size: 30px;
+    /* Enlarge the text [1][5] */
+}
+
+.payment-status-heading:first-child {
+    /* Target the first h2 element */
+    margin-top: 0;
+}
+
+/* Success state */
+.payment-status-success .payment-status-heading {
+    color: #28a745;
+}
+
+/* Failure state */
+.payment-status-failure .payment-status-heading {
+    color: #dc3545;
+}
